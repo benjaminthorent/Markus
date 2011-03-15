@@ -25,6 +25,10 @@
                  Submissions Collected")%>
             <% end %>
           </span>
+           <%= link_to I18n.t(:results_plagiarism),  
+     		{:controller => 'grade_entry_forms', 
+     		 :action => 'new'},
+   		     :class => "button" %> 
           <span id="class_average__<%=assignment.short_identifier %>">
             <% if !assignment.results_average.nil? %>
               | <%= I18n.t(:class_average, 

@@ -38,6 +38,8 @@ Rails::Initializer.run do |config|
   config.autoload_paths += %W(
                             app/controllers/api
                             lib/classes
+                            /opt/subversion/lib/svn-ruby
+							/opt/subversion/lib/svn-ruby/universal-darwin/
                          )
   # Load any local configuration that is kept out of source control
   # (e.g. gems, patches).

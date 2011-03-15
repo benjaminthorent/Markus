@@ -9,7 +9,11 @@
 <%= link_to I18n.t(:create_new_grade_entry_form),  
      {:controller => 'grade_entry_forms', 
      :action => 'new'},
-     :class => "button" %>   
+     :class => "button" %> 
+<%= link_to I18n.t(:configure_plagiarism),  
+     {:controller => 'plagiarism', 
+     :action => 'new'},
+     :class => "button" %>     
 
 <%= render :partial => "assignments/list_manage", 
   :locals => { :controller => 'assignments', :action => 'edit' } -%>

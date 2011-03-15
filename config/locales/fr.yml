@@ -86,6 +86,8 @@ fr:
     iso_date_format_example:    "Format:  YYYY-MM-DD - Exemple:  2009-01-13"
     iso_due_date_format_example:    "Format:  YYYY-MM-DD HH:MM - Exemple:  2009-01-13 17:44"
     create_new_assignment:      "Créer un nouveau projet"
+    configure_plagiarism: "Configuration Plagiat"
+    results_plagiarism: "Résultat Plagiat"
     manage_course_work: "Gestion du Cours"
     repository_folder:  "Dossier du projet"
     marking_state:

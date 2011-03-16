@@ -1,0 +1,23 @@
+<div id="title_bar"><h1><%= I18n.t("configure_plagiarism") %></h1>
+</div>
+
+<div class="wrapLeft">
+<% if flash[:success] %>
+<div class="success">
+  <span><%=flash[:success]%></span>
+</div>
+<% end %>
+
+<% form_for :assignment, @assignment, :html => {:multipart => true} do |f| %>
+<%= f.error_messages%>
+
+<fieldset>
+
+  <legend><%= I18n.t("test_framework.test_framework") %></legend>
+  
+</fieldset>
+
+<%= f.submit t(:submit) %>
+<% end %>
+
+</div>

@@ -1,0 +1,28 @@
+<%= render :partial => 'boot.js' %>
+
+<div class="wrapLeft">
+<% if flash[:success] %>
+<div class="success">
+  <span><%=flash[:success]%></span>
+</div>
+<% end %>
+
+<% form_for :assignment, @assignment, :html => {:multipart => true} do |f| %>
+<%= f.error_messages%>
+
+<% @assignments.each do |assignment| %>
+<fieldset>
+  <legend><%= I18n.t(:current_assignments) %></legend>
+
+  <fieldset>
+    <div class="wrapLeft">
+    <legend><%= I18n.t("test_framework.required_files_ant") %></legend>
+    </div>
+  </fieldset>
+  
+</fieldset>
+ <% end %>
+
+<%= f.submit t(:submit) %>
+<% end %>
+</div>

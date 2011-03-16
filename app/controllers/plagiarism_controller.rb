@@ -1,7 +1,8 @@
 class PlagiarismController < ApplicationController
 
-  def index
+  def new
     @assignment = Assignment.find_by_id(params[:id])
+    @assignments = Assignment.all
   end
 
 end

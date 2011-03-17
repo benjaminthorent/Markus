@@ -1,3 +1,12 @@
+<%
+  # For the internationalization of the Calendar
+%>
+<% if I18n.default_locale == :en %>
+   <%= calendar_date_select_includes "silver" %>
+<% else %>
+   <%= calendar_date_select_includes "silver", :locale => I18n.default_locale %>
+<% end %>
+
 <div id="title_bar"><h1><%= I18n.t("configure_plagiarism") %></h1>
 </div>
 
@@ -11,11 +20,41 @@
 <% form_for :assignment, @assignment, :html => {:multipart => true} do |f| %>
 <%= f.error_messages%>
 
-<fieldset>
-
-  <legend><%= I18n.t("test_framework.test_framework") %></legend>
-  
-</fieldset>
+<% @assignments.each do |assignment| %>
+	<fieldset>
+  		<legend><%= assignment.short_identifier + " : " + assignment.description + " (" + I18n.t(:due) + " " + I18n.l(assignment.due_date, :format => :long_date )+ ") "%></legend>
+  	
+  		<%= f.label :scheduled, t(:scheduled_date) %>
+  		<%# TODO update the global due date with the first due date added. %>
+	    <%= f.calendar_date_select :scheduled, {
+	          :time => "mixed",
+	          :locale => I18n.default_locale,
+	          :after_close => "refresh_due_date();",
+	          :year_range => 0.years.ago..1.years.from_now,
+			  :id => "scheduled_date"} %>
+    	<%# TODO The following code seriously needs some clean up  !!!!  %>
+   		<%= observe_field "scheduled_date", :function => "update_due_date($F('assignment_due_date'));" %> <%=t(:iso_due_date_format_example)%><br /><br />
+  		
+  		<fieldset>
+  			<legend><%= I18n.t(:files_to_exclude) %></legend>
+			  	<h4><%= I18n.t(:exclusion_text) %></h4>
+   				<div id="files_to_exclude">     			
+   				</div>
+   				<p id="file_to_exclude_add_link">
+     				<%= add_file_to_exclude_link t(:add_file_to_exclude), f %>
+   				</p>
+  		</fieldset>
+  		
+  		<%= check_box_tag(:no_javainterface) %>
+  		<%= label_tag(:no_javainterface, t(:ex_javainterface)) %>
+  		<br /><br />
+  		<%= f.label :similarity, t(:min_sim_val) %>
+  		<%= f.text_field :similarity %><br />
+  		<%= f.label :report, t(:max_det_rep) %>
+  		<%= f.text_field :report %>
+  		
+	</fieldset>
+<% end %>
 
 <%= f.submit t(:submit) %>
 <% end %>

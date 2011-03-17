@@ -1,0 +1,9 @@
+<div class="file_to_exclude">
+<% form.fields_for :files_to_exclude, file_to_exclude do |f| %>
+  <p>
+    <%= f.label :filename, t(:filename) %>
+    <%= f.text_field :filename %>
+    <%= link_to_function t(:remove), "$(this).up('.file_to_exclude').remove()" %>
+  </p>
+<% end %>
+</div>

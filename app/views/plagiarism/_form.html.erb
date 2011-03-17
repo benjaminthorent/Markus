@@ -10,7 +10,7 @@
 <% form_for :assignment, @assignment, :html => {:multipart => true} do |f| %>
 <%= f.error_messages%>
 
-<% @assignments.each do |assignment| %>
+<% @t.each do |assignment| %>
 <fieldset>
   <legend><%= I18n.t(:current_assignments) %></legend>
 

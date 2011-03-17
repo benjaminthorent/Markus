@@ -1,0 +1,11 @@
+<div class="assignment_file">
+<% form.fields_for :assignment_files, assignment_file do |f| %>
+  <p>
+    <%= f.label :filename, t(:filename) %>
+    <%= f.text_field :filename %>
+    <span>
+      <b><%= I18n.t(:remove) %> : </b><%= f.check_box :_destroy %>
+    </span>
+  </p>
+<% end %>
+</div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101117195814) do
+ActiveRecord::Schema.define(:version => 20110319130424) do
 
   create_table "annotation_categories", :force => true do |t|
     t.text     "annotation_category_name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20101117195814) do
 
   create_table "assignment_stats", :force => true do |t|
     t.integer "assignment_id"
-    t.text    "grade_distribution_percentage", :default => "'0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\n'"
+    t.text    "grade_distribution_percentage", :default => "'"
   end
 
   create_table "assignments", :force => true do |t|
@@ -116,6 +116,12 @@ ActiveRecord::Schema.define(:version => 20101117195814) do
   end
 
   add_index "extra_marks", ["result_id"], :name => "index_extra_marks_on_result_id"
+
+  create_table "files_to_exclude", :force => true do |t|
+    t.integer "file_id"
+    t.string  "file_name"
+    t.integer "plagiarism_config_id"
+  end
 
   create_table "flexible_criteria", :force => true do |t|
     t.string   "flexible_criterion_name",                                               :null => false
@@ -250,6 +256,14 @@ ActiveRecord::Schema.define(:version => 20101117195814) do
   end
 
   add_index "periods", ["submission_rule_id"], :name => "index_periods_on_submission_rule_id"
+
+  create_table "plagiarism_config", :force => true do |t|
+    t.integer  "config_id"
+    t.datetime "scheduled_detection_date"
+    t.boolean  "exclude_java_interface"
+    t.float    "minimum_similarity_value"
+    t.integer  "minimum_report_number"
+  end
 
   create_table "results", :force => true do |t|
     t.integer  "submission_id"

@@ -1,0 +1,24 @@
+<div id="title_bar"><h1><%= I18n.t("detection_plagiarism_results") %></h1></div>
+
+	<div class="wrapLeft">
+		<%= link_to I18n.t(:back),  
+		     {:controller => 'assignments', 
+		     :action => 'index'},
+		     :class => "button" %>
+		<br />
+		<br />
+		<br />
+	</div>
+	
+	<div class="wrapLeft">
+		<%= render :partial => "results_display" -%>
+	</div>
+	
+	<div class="wrapLeft">
+		<%= link_to I18n.t(:back),  
+		     {:controller => 'assignments', 
+		     :action => 'index'},
+		     :class => "button" %>	     
+	</div>
+
+</div>

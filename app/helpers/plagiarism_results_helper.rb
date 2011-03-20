@@ -1,0 +1,2 @@
+module PlagiarismResultsHelper
+end

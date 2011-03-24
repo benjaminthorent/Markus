@@ -85,6 +85,7 @@ en:
     max_det_rep: "Maximal number of detection report"
     ex_javainterface: "Exclude Java interface ?"
     detection_plagiarism_results: "Plagiarism Detection Results"
+    plagiarismerror: "Could not configure plagiat: #%{message}"
     download_csv_grade_report:  "Download CSV Grades Report"
     days_and_hours_left:      "(%{days} day(s) and %{hours} hour(s) left)"
     days_left:          "(%{days} day(s) left)"

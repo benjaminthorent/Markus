@@ -1,28 +1,68 @@
-<%= render :partial => 'boot.js' %>
+<%
+  # For the internationalization of the Calendar
+%>
+<% if I18n.default_locale == :en %>
+   <%= calendar_date_select_includes "silver" %>
+<% else %>
+   <%= calendar_date_select_includes "silver", :locale => I18n.default_locale %>
+<% end %>
+
+<br />
+<%= link_to I18n.t(:back),  
+     {:controller => 'assignments', 
+     :action => 'index'},
+     :class => "button" %>
+<br />
+<br />
+<br />
 
 <div class="wrapLeft">
-<% if flash[:success] %>
-<div class="success">
-  <span><%=flash[:success]%></span>
-</div>
+	<% if flash[:success] %>
+	<div class="success">
+	  <span><%=flash[:success]%></span>
+	</div>
 <% end %>
 
-<% form_for :assignment, @assignment, :html => {:multipart => true} do |f| %>
-<%= f.error_messages%>
+<div class="wrapLeft">
 
-<% @t.each do |assignment| %>
-<fieldset>
-  <legend><%= I18n.t(:current_assignments) %></legend>
+	<% form_for :plagiarism_config, @plagiarism_config do |f| %>
+	<%= f.error_messages%>
+	
+	<% @assignments.each do |assignment| %>
+		<fieldset>
+	  		<legend><%= assignment.short_identifier + " : " + assignment.description + " (" + I18n.t(:due) + " " + I18n.l(assignment.due_date, :format => :long_date )+ ") "%></legend>
+	  	
+	  		<%= f.label :scheduled_detection_date, t(:scheduled_date) %>
+	  		<%= f.calendar_date_select :scheduled_detection_date, {
+		          :time => "mixed",
+		          :locale => I18n.default_locale,
+		          :after_close => "refresh_due_date();",
+		          :year_range => 0.years.ago..1.years.from_now,
+				  :id => "scheduled_detection_date"} %>
+	    	<%= observe_field "scheduled_detection_date", :function => "update_due_date($F('assignment_due_date'));" %> <%=t(:iso_due_date_format_example)%><br /><br />
+	  		
+	  		<fieldset>
+	  			<legend><%= I18n.t(:files_to_exclude) %></legend>
+				  	<h4><%= I18n.t(:exclusion_text) %></h4>
+	   				<div id="files_to_exclude">     			
+	   				</div>
+	   				<p id="file_to_exclude_add_link">
+	     				<%= add_file_to_exclude_link t(:add_file_to_exclude), f %>
+	   				</p>
+	  		</fieldset>
+	  		
+	  		<%= check_box_tag(:exclude_java_interface) %>
+	  		<%= label_tag(:exclude_java_interface, t(:ex_javainterface)) %>
+	  		<br /><br />
+	  		<%= f.label :minimum_similarity_value, t(:min_sim_val) %>
+	  		<%= f.text_field :minimum_similarity_value %><br />
+	  		<%= f.label :minimum_report_number, t(:max_det_rep) %>
+	  		<%= f.text_field :minimum_report_number %>
+	  		
+		</fieldset>
+	<% end %>
+	
+	<%= f.submit t(:submit) %>
+	<% end %>
 
-  <fieldset>
-    <div class="wrapLeft">
-    <legend><%= I18n.t("test_framework.required_files_ant") %></legend>
-    </div>
-  </fieldset>
-  
-</fieldset>
- <% end %>
-
-<%= f.submit t(:submit) %>
-<% end %>
 </div>

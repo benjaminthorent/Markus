@@ -25,12 +25,11 @@
 
 <div class="wrapLeft">
 
-	<% form_for :plagiarism_config, @plagiarism_config do |f| %>
-	<%= f.error_messages%>
-	
-	<% @assignments.each do |assignment| %>
+<% form_for :plagiarism_config, @plagiarism_config, :html => {:multipart => true} do |f| %>
+<%= f.error_messages%>
+
 		<fieldset>
-	  		<legend><%= assignment.short_identifier + " : " + assignment.description + " (" + I18n.t(:due) + " " + I18n.l(assignment.due_date, :format => :long_date )+ ") "%></legend>
+	  		<legend><%= @assignment.short_identifier + " : " + @assignment.description + " (" + I18n.t(:due) + " " + I18n.l(@assignment.due_date, :format => :long_date )+ ") "%></legend>
 	  	
 	  		<%= f.label :scheduled_detection_date, t(:scheduled_date) %>
 	  		<%= f.calendar_date_select :scheduled_detection_date, {
@@ -60,7 +59,6 @@
 	  		<%= f.text_field :minimum_report_number %>
 	  		
 		</fieldset>
-	<% end %>
 	
 	<%= f.submit t(:submit) %>
 	<% end %>

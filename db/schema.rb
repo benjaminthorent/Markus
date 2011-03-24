@@ -263,7 +263,7 @@ ActiveRecord::Schema.define(:version => 20110319145021) do
     t.boolean  "exclude_java_interface"
     t.float    "minimum_similarity_value"
     t.integer  "minimum_report_number"
-    t.integer  "assignement_id"
+    t.integer  "assignment_id"
   end
 
   create_table "results", :force => true do |t|

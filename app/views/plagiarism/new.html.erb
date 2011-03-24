@@ -26,7 +26,7 @@
 <br />
 <br />
 
-<% form_for :plagiarism_config, @assignment, :html => {:multipart => true} do |f| %>
+<% form_for :plagiarism_config, @plagiarism_config do |f| %>
 <%= f.error_messages%>
 
 <% @assignments.each do |assignment| %>
@@ -39,8 +39,8 @@
 	          :locale => I18n.default_locale,
 	          :after_close => "refresh_due_date();",
 	          :year_range => 0.years.ago..1.years.from_now,
-			  :id => "scheduled_date"} %>
-    	<%= observe_field "scheduled_date", :function => "update_due_date($F('assignment_due_date'));" %> <%=t(:iso_due_date_format_example)%><br /><br />
+			  :id => "scheduled_detection_date"} %>
+    	<%= observe_field "scheduled_detection_date", :function => "update_due_date($F('assignment_due_date'));" %> <%=t(:iso_due_date_format_example)%><br /><br />
   		
   		<fieldset>
   			<legend><%= I18n.t(:files_to_exclude) %></legend>

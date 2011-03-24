@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110319130424) do
+ActiveRecord::Schema.define(:version => 20110319145021) do
 
   create_table "annotation_categories", :force => true do |t|
     t.text     "annotation_category_name"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20110319130424) do
 
   add_index "extra_marks", ["result_id"], :name => "index_extra_marks_on_result_id"
 
-  create_table "files_to_exclude", :force => true do |t|
+  create_table "files_to_excludes", :force => true do |t|
     t.integer "file_id"
     t.string  "file_name"
     t.integer "plagiarism_config_id"
@@ -257,12 +257,13 @@ ActiveRecord::Schema.define(:version => 20110319130424) do
 
   add_index "periods", ["submission_rule_id"], :name => "index_periods_on_submission_rule_id"
 
-  create_table "plagiarism_config", :force => true do |t|
+  create_table "plagiarism_configs", :force => true do |t|
     t.integer  "config_id"
     t.datetime "scheduled_detection_date"
     t.boolean  "exclude_java_interface"
     t.float    "minimum_similarity_value"
     t.integer  "minimum_report_number"
+    t.integer  "assignement_id"
   end
 
   create_table "results", :force => true do |t|

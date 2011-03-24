@@ -27,7 +27,8 @@
           </span>
            <%= link_to I18n.t(:results_plagiarism),  
      		{:controller => 'plagiarism_results', 
-     		 :action => 'new'},
+     		 :action => 'new',
+     		 :id => assignment.id},
    		     :class => "button" %> 
           <span id="class_average__<%=assignment.short_identifier %>">
             <% if !assignment.results_average.nil? %>

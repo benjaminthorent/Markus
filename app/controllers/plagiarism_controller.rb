@@ -1,8 +1,12 @@
+# Controller for plagiarism configuration
+
 class PlagiarismController < ApplicationController
 
   def new
-    @assignments = Assignment.find(:all)
+    @assignment = Assignment.find(params[:id])
     @plagiarism_config = PlagiarismConfig.new
   end
+
+
 
 end

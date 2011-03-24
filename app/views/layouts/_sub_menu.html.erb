@@ -9,7 +9,8 @@
   controller.controller_name == 'ta_assignments' or
   controller.controller_name == 'annotation_categories' or
   controller.controller_name == 'grade_entry_forms' or
-  controller.controller_name == 'test_framework'
+  controller.controller_name == 'test_framework' or
+  controller.controller_name == 'plagiarism'
 %>
 <div id="sub_menu">
   <ul id="root" class="level1 horizontal">
@@ -109,8 +110,20 @@
        <li <% if controller.controller_name == 'test_framework'%>
          id="sub_menu_active"
 	  <%end%>>
-		 <%= link_to I18n.t("test_framework.test_framework"), :controller => 'test_framework', :action => 'manage', :id => @assignment.id%>
+		 <%= link_to I18n.t("test_framework.test_framework"),
+			     :controller => 'test_framework',
+			     :action => 'manage',
+			     :id => @assignment.id %>
       </li>
+       <li <% if controller.controller_name == 'plagiarism'%>
+         id="sub_menu_active"
+	  <%end%>>
+		 <%= link_to I18n.t("plagiarism"),
+			     :controller => 'plagiarism',
+			     :action => 'new',
+			     :id => @assignment.id%>
+      </li>
+
   <% end %>
 <% end %>
     </ul>
